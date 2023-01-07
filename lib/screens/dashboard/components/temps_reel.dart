@@ -1,5 +1,5 @@
-import 'package:admin/controllers/realtime_controller.dart';
-import 'package:admin/models/data_model.dart';
+import 'package:inte_eco_admin/controllers/realtime_controller.dart';
+import 'package:inte_eco_admin/models/data_model.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

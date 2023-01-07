@@ -1,5 +1,5 @@
-import 'package:admin/models/data_model.dart';
-import 'package:admin/providers/data_provider.dart';
+import 'package:inte_eco_admin/models/data_model.dart';
+import 'package:inte_eco_admin/providers/data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

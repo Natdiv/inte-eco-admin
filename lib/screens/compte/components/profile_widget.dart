@@ -1,5 +1,5 @@
-import 'package:admin/controllers/auth_controller.dart';
-import 'package:admin/models/user_data.dart';
+import 'package:inte_eco_admin/controllers/auth_controller.dart';
+import 'package:inte_eco_admin/models/user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

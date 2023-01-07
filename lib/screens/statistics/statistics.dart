@@ -1,6 +1,6 @@
-import 'package:admin/responsive.dart';
-import 'package:admin/screens/statistics/components/monthly_fl_chart.dart';
-import 'package:admin/widgets/header.dart';
+import 'package:inte_eco_admin/responsive.dart';
+import 'package:inte_eco_admin/screens/statistics/components/monthly_fl_chart.dart';
+import 'package:inte_eco_admin/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';

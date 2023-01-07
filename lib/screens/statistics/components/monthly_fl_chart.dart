@@ -1,6 +1,6 @@
-import 'package:admin/controllers/main_controller.dart';
-import 'package:admin/controllers/statistics_controller.dart';
-import 'package:admin/models/data_model.dart';
+import 'package:inte_eco_admin/controllers/main_controller.dart';
+import 'package:inte_eco_admin/controllers/statistics_controller.dart';
+import 'package:inte_eco_admin/models/data_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

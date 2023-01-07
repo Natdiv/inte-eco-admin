@@ -1,9 +1,9 @@
-import 'package:admin/controllers/auth_controller.dart';
-import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/components/my_fields.dart';
-import 'package:admin/screens/dashboard/components/realtime_fl_ch.dart';
-import 'package:admin/screens/dashboard/components/resume_card.dart';
-import 'package:admin/screens/dashboard/components/temps_reel.dart';
+import 'package:inte_eco_admin/controllers/auth_controller.dart';
+import 'package:inte_eco_admin/responsive.dart';
+import 'package:inte_eco_admin/screens/dashboard/components/my_fields.dart';
+import 'package:inte_eco_admin/screens/dashboard/components/realtime_fl_ch.dart';
+import 'package:inte_eco_admin/screens/dashboard/components/resume_card.dart';
+import 'package:inte_eco_admin/screens/dashboard/components/temps_reel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

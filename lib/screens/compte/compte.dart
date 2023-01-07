@@ -1,4 +1,4 @@
-import 'package:admin/screens/compte/components/profile_widget.dart';
+import 'package:inte_eco_admin/screens/compte/components/profile_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';

@@ -1,9 +1,9 @@
-import 'package:admin/controllers/auth_controller.dart';
-import 'package:admin/controllers/main_controller.dart';
-import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/dashboard_screen.dart';
-import 'package:admin/screens/splash.dart';
-import 'package:admin/screens/statistics/statistics.dart';
+import 'package:inte_eco_admin/controllers/auth_controller.dart';
+import 'package:inte_eco_admin/controllers/main_controller.dart';
+import 'package:inte_eco_admin/responsive.dart';
+import 'package:inte_eco_admin/screens/dashboard/dashboard_screen.dart';
+import 'package:inte_eco_admin/screens/splash.dart';
+import 'package:inte_eco_admin/screens/statistics/statistics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../compte/compte.dart';

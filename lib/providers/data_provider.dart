@@ -1,5 +1,5 @@
-import 'package:admin/models/data_model.dart';
-import 'package:admin/models/user_data.dart';
+import 'package:inte_eco_admin/models/data_model.dart';
+import 'package:inte_eco_admin/models/user_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 
