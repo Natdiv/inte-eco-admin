@@ -1,4 +1,5 @@
 import 'package:inte_eco_admin/responsive.dart';
+import 'package:inte_eco_admin/screens/statistics/components/charts.dart';
 import 'package:inte_eco_admin/screens/statistics/components/monthly_fl_chart.dart';
 import 'package:inte_eco_admin/widgets/header.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,8 @@ class StatiticsScreen extends StatelessWidget {
                         "Statistiques",
                         style: Theme.of(context).textTheme.subtitle1,
                       ),
+                      SizedBox(height: defaultPadding),
+                      ChartStats(),
                       SizedBox(height: defaultPadding),
                       MonthlyLineChart(),
                       SizedBox(height: defaultPadding),

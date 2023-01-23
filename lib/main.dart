@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
       title: 'INTE ECO',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: bgColor,
+        primaryColor: primaryColor,
+        progressIndicatorTheme:
+            const ProgressIndicatorThemeData(color: primaryColor),
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,

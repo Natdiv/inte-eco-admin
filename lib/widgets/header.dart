@@ -65,12 +65,11 @@ class ProfileCard extends StatelessWidget {
           child: Row(
             children: [
               if (!Responsive.isMobile(context))
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: defaultPadding / 2),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
                   child: Text('Deconnexion'),
                 ),
-              Icon(Icons.logout),
+              const Icon(Icons.logout),
             ],
           ),
         ),

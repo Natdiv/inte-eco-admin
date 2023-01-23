@@ -1,4 +1,4 @@
-import 'package:inte_eco_admin/controllers/main_controller.dart';
+import 'package:inte_eco_admin/constants.dart';
 import 'package:inte_eco_admin/controllers/statistics_controller.dart';
 import 'package:inte_eco_admin/models/data_model.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -24,9 +24,9 @@ class _MonthlyLineChart extends StatelessWidget {
         titlesData: titlesData1,
         borderData: borderData,
         lineBarsData: lineBarsData1,
-        minX: 1,
-        maxX: 13,
-        maxY: 1000,
+        minX: 0.5,
+        maxX: 12.5,
+        maxY: 4001,
         minY: 0,
       );
 
@@ -52,7 +52,8 @@ class _MonthlyLineChart extends StatelessWidget {
         ),
       );
 
-  List<LineChartBarData> get lineBarsData1 => [lineChartBarDataH2s];
+  List<LineChartBarData> get lineBarsData1 =>
+      [lineChartBarDataH2s, lineChartBarDataCo2];
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
@@ -65,14 +66,17 @@ class _MonthlyLineChart extends StatelessWidget {
       case 0:
         text = '0';
         break;
-      case 100:
-        text = '100';
-        break;
       case 500:
         text = '500';
         break;
       case 1000:
         text = '1000';
+        break;
+      case 2000:
+        text = '2000';
+        break;
+      case 4000:
+        text = '4000';
         break;
       default:
         return Container();
@@ -95,83 +99,69 @@ class _MonthlyLineChart extends StatelessWidget {
       fontSize: 14,
     );
     Widget text;
-    switch (value.toInt()) {
-      case 1:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Janvier', style: style),
-        );
-        break;
-      case 2:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Février', style: style),
-        );
-        break;
-      case 3:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Mars', style: style),
-        );
-        break;
-      case 4:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Avril', style: style),
-        );
-        break;
-      case 5:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Mai', style: style),
-        );
-        break;
-      case 6:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Juin', style: style),
-        );
-        break;
-      case 7:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Juillet', style: style),
-        );
-        break;
-      case 8:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Août', style: style),
-        );
-        break;
-      case 9:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Septembre', style: style),
-        );
-        break;
-      case 10:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Octobre', style: style),
-        );
-        break;
-      case 11:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Novembre', style: style),
-        );
-        break;
-      case 12:
-        text = RotatedBox(
-          quarterTurns: 3,
-          child: Text('Décembre', style: style),
-        );
-        break;
 
-      default:
-        text = const Text('');
-        break;
+    if (value == 1.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Janvier', style: style),
+      );
+    } else if (value == 2.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Février', style: style),
+      );
+    } else if (value == 3.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Mars', style: style),
+      );
+    } else if (value == 4.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Avril', style: style),
+      );
+    } else if (value == 5.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Mai', style: style),
+      );
+    } else if (value == 6.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Juin', style: style),
+      );
+    } else if (value == 7.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Juillet', style: style),
+      );
+    } else if (value == 8.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Août', style: style),
+      );
+    } else if (value == 9.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Septembre', style: style),
+      );
+    } else if (value == 10.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Octobre', style: style),
+      );
+    } else if (value == 11.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Novembre', style: style),
+      );
+    } else if (value == 12.0) {
+      text = const RotatedBox(
+        quarterTurns: 3,
+        child: Text('Décembre', style: style),
+      );
+    } else {
+      text = Container();
     }
 
     return SideTitleWidget(
@@ -216,22 +206,7 @@ class _MonthlyLineChart extends StatelessWidget {
           // print(e.date!.toDate().toString().split(' ')[1].split('.')[0]);
           var mois = e.date!.toDate().toString().split(' ')[0].split('-')[1];
           var jour = e.date!.toDate().toString().split(' ')[0].split('-')[2];
-          var moisp = (dataStation.indexOf(e) > 0)
-              ? dataStation[dataStation.indexOf(e) - 1]
-                  .date!
-                  .toDate()
-                  .toString()
-                  .split(' ')[0]
-                  .split('-')[1]
-              : '0';
-          var jourp = (dataStation.indexOf(e) > 0)
-              ? dataStation[dataStation.indexOf(e) - 1]
-                  .date!
-                  .toDate()
-                  .toString()
-                  .split(' ')[0]
-                  .split('-')[2]
-              : '0';
+
           var heure = e.date!
               .toDate()
               .toString()
@@ -250,52 +225,36 @@ class _MonthlyLineChart extends StatelessWidget {
               .split(' ')[1]
               .split('.')[0]
               .split(':')[2];
-          var heurep = (dataStation.indexOf(e) > 0)
-              ? dataStation[dataStation.indexOf(e) - 1]
-                  .date!
-                  .toDate()
-                  .toString()
-                  .split(' ')[1]
-                  .split('.')[0]
-                  .split(':')[0]
-              : '0';
-          var minutep = (dataStation.indexOf(e) > 0)
-              ? dataStation[dataStation.indexOf(e) - 1]
-                  .date!
-                  .toDate()
-                  .toString()
-                  .split(' ')[1]
-                  .split('.')[0]
-                  .split(':')[1]
-              : '0';
-          var secondp = (dataStation.indexOf(e) > 0)
-              ? dataStation[dataStation.indexOf(e) - 1]
-                  .date!
-                  .toDate()
-                  .toString()
-                  .split(' ')[1]
-                  .split('.')[0]
-                  .split(':')[2]
-              : '0';
-          double x = double.parse(mois) +
-              double.parse(jour) / 31 +
-              double.parse(heure) / 24 / 31 +
-              double.parse(minute) / 60 / 24 / 31 +
-              double.parse(second) / 60 / 60 / 24 / 31;
-          double xp = double.parse(moisp) +
-              double.parse(jourp) / 31 +
-              double.parse(heurep) / 24 / 31 +
-              double.parse(minutep) / 60 / 24 / 31 +
-              double.parse(secondp) / 60 / 60 / 24 / 31;
-          print(
-              "$mois $jour $heure $minute $second => $x > ${xp.toInt()} ${x > xp}");
 
-          if (int.parse(jour) == 1) {
+          double x = double.parse(mois) + double.parse(jour) / 32;
+          print(
+              "$mois $jour $heure $minute $second => $x : ${double.parse(e.h2s!)}");
+
+          if (jour == 1.0) {
             x = double.parse(jour);
             print("POUR LE PREMIER JOUR: $x du $mois");
           }
 
           return FlSpot(x, double.parse(e.h2s!));
+        }).toList(),
+      );
+  LineChartBarData get lineChartBarDataCo2 => LineChartBarData(
+        isCurved: true,
+        color: const Color(0xFFEE2727),
+        barWidth: 2,
+        isStrokeCapRound: true,
+        dotData: FlDotData(
+          show: false,
+        ),
+        belowBarData: BarAreaData(
+          show: false,
+          color: const Color(0x00aa4cfc),
+        ),
+        spots: dataStation.reversed.map((e) {
+          var mois = e.date!.toDate().toString().split(' ')[0].split('-')[1];
+          var jour = e.date!.toDate().toString().split(' ')[0].split('-')[2];
+          double x = double.parse(mois) + double.parse(jour) / 32;
+          return FlSpot(x, double.parse(e.co2!));
         }).toList(),
       );
 }
@@ -310,16 +269,8 @@ class MonthlyLineChart extends StatelessWidget {
             height: 350,
             child: DecoratedBox(
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(18)),
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xff2c274c),
-                      Color(0xff46426c),
-                    ],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                  ),
-                ),
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    color: secondaryColor),
                 child: Stack(
                   children: <Widget>[
                     Positioned(
@@ -328,14 +279,14 @@ class MonthlyLineChart extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xff4af699),
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10),
                                     bottomLeft: Radius.circular(10)),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
                                     vertical: 4, horizontal: 8),
                                 child: Text(
                                   'H 2 S',
@@ -412,8 +363,7 @@ class MonthlyLineChart extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(right: 16, left: 6),
                             child: _MonthlyLineChart(
-                                dataStation:
-                                    controller.monthlyData.reversed.toList()),
+                                dataStation: controller.monthlyData),
                           ),
                         ),
                         const SizedBox(
@@ -434,17 +384,9 @@ class MonthlyLineChart extends StatelessWidget {
         : Container(
             height: 300,
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(18)),
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xff2c274c),
-                  Color(0xff46426c),
-                ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
-            ),
-            child: Center(
+                borderRadius: BorderRadius.all(Radius.circular(18)),
+                color: secondaryColor),
+            child: const Center(
               child: SizedBox(
                 height: 60,
                 width: 60,

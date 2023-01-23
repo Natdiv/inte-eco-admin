@@ -14,9 +14,9 @@ class StatsController extends GetxController {
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
-    _monthlyData.bindStream(_dataProvider.getDataPerMonth());
+    _monthlyData.value = await _dataProvider.getDataPerMonth();
     // ever(_dataStation, _onDtaChanged);
   }
 

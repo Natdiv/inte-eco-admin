@@ -1,3 +1,4 @@
+import 'package:inte_eco_admin/constants.dart';
 import 'package:inte_eco_admin/controllers/auth_controller.dart';
 import 'package:inte_eco_admin/controllers/main_controller.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class SideMenu extends StatelessWidget {
           child: ListView(
             children: [
               DrawerHeader(
+                margin: const EdgeInsets.only(bottom: 0),
                 child: Center(
                   child: Image.asset(
                     "assets/logo/logo.png",
@@ -26,11 +28,10 @@ class SideMenu extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                   ),
                 ),
-                margin: EdgeInsets.only(bottom: 0),
               ),
               Container(
                 color: (controller.screenIndex == 0)
-                    ? Color(0xFF212332)
+                    ? bgColor
                     : Colors.transparent,
                 child: DrawerListTile(
                   title: "Dashboard",
@@ -42,7 +43,7 @@ class SideMenu extends StatelessWidget {
               ),
               Container(
                 color: (controller.screenIndex == 1)
-                    ? Color(0xFF212332)
+                    ? bgColor
                     : Colors.transparent,
                 child: DrawerListTile(
                   title: "Statistiques",
@@ -55,7 +56,7 @@ class SideMenu extends StatelessWidget {
               if (authController.currentAccount!.role != "admin")
                 Container(
                   color: (controller.screenIndex == 2)
-                      ? Color(0xFF212332)
+                      ? bgColor
                       : Colors.transparent,
                   child: DrawerListTile(
                     title: "Stations",
@@ -67,7 +68,7 @@ class SideMenu extends StatelessWidget {
                 ),
               Container(
                 color: (controller.screenIndex == 3)
-                    ? Color(0xFF212332)
+                    ? bgColor
                     : Colors.transparent,
                 child: DrawerListTile(
                   title: "Mon compte",
@@ -80,7 +81,7 @@ class SideMenu extends StatelessWidget {
               if (authController.currentAccount!.role == "admin")
                 Container(
                     color: (controller.screenIndex == 4)
-                        ? Color(0xFF212332)
+                        ? bgColor
                         : Colors.transparent,
                     child: DrawerListTile(
                       title: "Gestion de compte",
@@ -92,7 +93,7 @@ class SideMenu extends StatelessWidget {
               if (authController.currentAccount!.role == "admin")
                 Container(
                     color: (controller.screenIndex == 5)
-                        ? Color(0xFF212332)
+                        ? bgColor
                         : Colors.transparent,
                     child: DrawerListTile(
                       title: "Gestion de stations",

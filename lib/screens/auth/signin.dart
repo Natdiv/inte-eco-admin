@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 
 import '../../constants.dart';
 import '../../controllers/auth_controller.dart';
-import '../../responsive.dart';
-import '../../routes/app_pages.dart';
 
 class SigninPage extends StatefulWidget {
   @override
@@ -49,17 +47,16 @@ class _SigninPageState extends State<SigninPage> {
               key: _formKey,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Image.asset(
                       "assets/logo/logo.png",
-                      width: 100,
-                      scale: 1,
-                      fit: BoxFit.fitWidth,
+                      width: 125,
+                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 16),
                     Text(
                       "Connexion",
                       style: Theme.of(context).textTheme.headline6,
@@ -156,6 +153,7 @@ class _SigninPageState extends State<SigninPage> {
                     ElevatedButton.icon(
                       style: TextButton.styleFrom(
                         disabledBackgroundColor: Colors.grey,
+                        backgroundColor: primaryColor,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 32,
                           vertical: 16,
@@ -174,7 +172,9 @@ class _SigninPageState extends State<SigninPage> {
                       height: 24,
                     ),
                     Obx(() => authController.isLoading
-                        ? const LinearProgressIndicator()
+                        ? const LinearProgressIndicator(
+                            color: primaryColor,
+                          )
                         : const SizedBox()),
                     const SizedBox(
                       height: 12,

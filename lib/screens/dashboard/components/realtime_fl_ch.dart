@@ -433,7 +433,9 @@ class RealTimeLineChart extends StatelessWidget {
               child: SizedBox(
                 height: 60,
                 width: 60,
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: primaryColor,
+                ),
               ),
             )));
   }

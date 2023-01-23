@@ -62,24 +62,67 @@ class DataProvider {
     });
   }
 
-  Stream<List<DataModel>> getDataPerMonth() {
-    int year = DateTime.now().year;
-    int month = DateTime.now().month;
+  Future<List<DataModel>> getDataPerMonth() async {
+    var initDay = -1;
+    var cpt = 0;
+    double sumCo = 0;
+    double sumCo2 = 0;
+    double sumH2s = 0;
+    double sumHumidity = 0;
+    double sumTemperature = 0;
+    DataModel dataModel = DataModel();
 
-    return firebaseFirestore
-        .collection('data_station')
-        // .where('date_value.month', isLessThanOrEqualTo: month)
-        .orderBy("date", descending: true)
-        .snapshots()
-        .map((QuerySnapshot query) {
-      List<DataModel> data = [];
-      for (var d in query.docs) {
-        final dataModel = DataModel.fromDocumentSnapshot(documentSnapshot: d);
-        data.add(dataModel);
+    final ref = firebaseFirestore
+        .collection("data_station")
+        .withConverter(
+          fromFirestore: DataModel.fromFirestore,
+          toFirestore: (DataModel _data, _) => _data.toFirestore(),
+        )
+        .orderBy("date");
+
+    final querySnapshot = await ref.get();
+    List<DataModel> data = [];
+    var allData = querySnapshot.docs.map((e) => e.data()).toList();
+    allData.add(DataModel(
+        co: "0",
+        co2: "0",
+        h2s: "0",
+        tauxHumidite: "0",
+        temperature: "0",
+        dateValue: {'day': 0, 'month': 0, 'year': 0},
+        date: dataModel.date));
+    for (var d in allData) {
+      dataModel = d;
+      if (dataModel.dateValue?['day'] != initDay) {
+        if (initDay != -1) {
+          data.add(DataModel(
+              co: (sumCo / cpt).toStringAsFixed(2),
+              co2: (sumCo2 / cpt).toStringAsFixed(2),
+              h2s: (sumH2s / cpt).toStringAsFixed(2),
+              tauxHumidite: (sumHumidity / cpt).toStringAsFixed(2),
+              temperature: (sumTemperature / cpt).toStringAsFixed(2),
+              dateValue: allData[(allData.indexOf(dataModel) - 1)].dateValue,
+              date: allData[(allData.indexOf(dataModel) - 1)].date));
+        }
+
+        cpt = 1;
+        initDay = dataModel.dateValue?['day'];
+        sumCo = double.parse(dataModel.co!);
+        sumCo2 = double.parse(dataModel.co2!);
+        sumH2s = double.parse(dataModel.h2s!);
+        sumHumidity = double.parse(dataModel.tauxHumidite!);
+        sumTemperature = double.parse(dataModel.temperature!);
+        // initMinute = dataModel.dateValue?['day'];
+      } else {
+        sumCo += double.parse(dataModel.co!);
+        sumCo2 += double.parse(dataModel.co2!);
+        sumH2s += double.parse(dataModel.h2s!);
+        sumHumidity += double.parse(dataModel.tauxHumidite!);
+        sumTemperature += double.parse(dataModel.temperature!);
+        cpt++;
       }
-      // print(data);
-      return data;
-    });
+    }
+    return data;
   }
 
   Future<void> addUser(UserModel userModel) async {

@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 
 import '../../../constants.dart';
 import '../../../responsive.dart';
-import 'file_info_card.dart';
 
 class ResumeCard extends StatelessWidget {
   RealTimeController controller = Get.put(RealTimeController());
@@ -19,11 +18,10 @@ class ResumeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // height: 80,
       child: GridView(
         shrinkWrap: true,
         primary: false,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: (!Responsive.isMobile(context)) ? 5 : 2,
           mainAxisSpacing: defaultPadding,
@@ -32,23 +30,18 @@ class ResumeCard extends StatelessWidget {
         ),
         children: [
           _buildCardInfo(
-              context, "CO2", data.co2.toString(), Color(0xFFEE2727)),
+              context, "CO2", data.co2.toString(), const Color(0xFFEE2727)),
           _buildCardInfo(
               context,
               "H2s",
               ((Random().nextDouble() * 1.9).toPrecision(3)).toString(),
-              Color(0xff4af699)),
-          _buildCardInfo(context, "CO", data.co.toString(), Color(0xFFFFCF26)),
+              const Color(0xff4af699)),
           _buildCardInfo(
-              context,
-              "Température",
-              data.temperature.toString() + " °C",
-              Color.fromARGB(255, 204, 0, 255)),
-          _buildCardInfo(
-              context,
-              "Humidité",
-              data.tauxHumidite.toString() + "%",
-              Color.fromARGB(255, 255, 136, 0)),
+              context, "CO", data.co.toString(), const Color(0xFFFFCF26)),
+          _buildCardInfo(context, "Température", "${data.temperature} °C",
+              const Color.fromARGB(255, 204, 0, 255)),
+          _buildCardInfo(context, "Humidité", "${data.tauxHumidite} %",
+              const Color.fromARGB(255, 255, 136, 0)),
         ],
       ),
     );
@@ -57,16 +50,16 @@ class ResumeCard extends StatelessWidget {
   Container _buildCardInfo(
       BuildContext context, String element, String value, Color color) {
     return Container(
-        padding: EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.only(top: 8),
         decoration: BoxDecoration(
           color: color,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Container(
-          padding: EdgeInsets.all(defaultPadding / 2),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(defaultPadding / 2),
+          decoration: const BoxDecoration(
             color: secondaryColor,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +67,9 @@ class ResumeCard extends StatelessWidget {
             children: [
               Text(element,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.w500)),
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500)),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Text(value,

@@ -33,6 +33,35 @@ class DataModel {
     dateValue = documentSnapshot['date_value'];
   }
 
+  factory DataModel.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    final documentSnapshot = snapshot.data();
+    return DataModel(
+        idStation: documentSnapshot?['id_station'],
+        date: documentSnapshot?['date'],
+        co: documentSnapshot?['co'],
+        co2: documentSnapshot?['co2'],
+        h2s: documentSnapshot?['h2s'],
+        temperature: documentSnapshot?['temperature'],
+        tauxHumidite: documentSnapshot?['humidity'],
+        dateValue: documentSnapshot?['date_value']);
+  }
+
+  Map<String, dynamic> toFirestore() {
+    final data = <String, dynamic>{};
+    data['id_station'] = idStation;
+    data['date'] = date;
+    data['co'] = co;
+    data['co2'] = co2;
+    data['h2s'] = h2s;
+    data['temperature'] = temperature;
+    data['taux_humidite'] = tauxHumidite;
+    data['date_value'] = dateValue;
+    return data;
+  }
+
   DataModel.fromJson(Map<String, dynamic> json) {
     idStation = json['id_station'];
     date = json['date'];
